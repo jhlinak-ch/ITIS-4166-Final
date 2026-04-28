@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User{
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  role Role @default(USER)
+  orders Order[]
+  @@map("users")
+}
+
+model Item{
+  id Int @id @default(autoincrement())
+  name String
+  price Decimal
+  orders OrderItem[]
+  @@map("items")
+}
+
+model Order{
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+  items OrderItem[]
+  placedAt DateTime @default(now()) @map("placed_at")
+  @@map("orders")
+}
+
+model OrderItem{
+  id Int @id @default(autoincrement())
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId Int
+  item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  itemId Int
+  quantity Int
+  review Review?
+  @@map("order_items")
+}
+
+model Review{
+  id Int @id @default(autoincrement())
+  orderItem OrderItem @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+  orderItemId Int @unique
+  score Int
+  content String
+  @@map("reviews")
+}
+
+enum Role{
+  USER
+  ADMIN
+}   
