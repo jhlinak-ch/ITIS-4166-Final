@@ -3,7 +3,6 @@ import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import yaml from 'js-yaml';
 import fs from 'fs';
-// import postRoutes from './routes/postRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import itemRoutes from './routes/itemRoutes.js';
 
@@ -22,7 +21,6 @@ try {
 }
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-// app.use('/api/posts', postRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/items', itemRoutes);
 
