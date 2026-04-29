@@ -12,7 +12,8 @@
     "migrate:dev": "npx prisma migrate dev",
     "migrate:deploy": "npx prisma migrate deploy",
     "seed:dev": "node --env-file=.env prisma/seed.js",
-    "seed:prod": "node prisma/seed.js"
+    "seed:prod": "node prisma/seed.js",
+    "start:dev": "npm run migrate:dev && npx prisma generate && npm run seed:dev && npm run dev"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
