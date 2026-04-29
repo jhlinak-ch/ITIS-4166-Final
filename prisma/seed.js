@@ -36,27 +36,11 @@ try {
     const itemsData = [
       { name: "Television", price: 500 },
       { name: "Desk", price: 100 },
-      { name: "Chair", price: 75}
+      { name: "Chair", price: 75},
+      { name: "Laptop", price: 800}
     ]
     await prisma.item.createMany({ data: itemsData });
   }
-
-  // for (const user of users) {
-  //   await prisma.post.createMany({
-  //     data: [
-  //       {
-  //         title: `Welcome Post by ${user.email.split('@')[0]}`,
-  //         content: `This is the first post by ${user.email.split('@')[0]}.`,
-  //         authorId: user.id,
-  //       },
-  //       {
-  //         title: `Thoughts by ${user.email.split('@')[0]}`,
-  //         content: `Another insightful post by ${user.email.split('@')[0]}.`,
-  //         authorId: user.id,
-  //       },
-  //     ],
-  //   });
-  // }
 
   console.log('Seed completed successfully!');
 } catch (error) {
