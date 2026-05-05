@@ -5,12 +5,12 @@ import yaml from 'js-yaml';
 import fs from 'fs';
 import authRoutes from './routes/authRoutes.js';
 import itemRoutes from './routes/itemRoutes.js';
-import cors from 'cors';
+// import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 if (process.env.NODE_ENV !== 'test') app.use(morgan('tiny'));
 
